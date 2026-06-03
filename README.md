@@ -1,26 +1,55 @@
 # Brain Tumor MRI Classification Using Convolutional Neural Networks
 
 ## Project Overview
-This project implements a deep learning–based image classification system to detect brain tumors from MRI images. A Convolutional Neural Network (CNN) is trained to classify MRI scans into tumor and non-tumor categories, helping demonstrate the application of deep learning in medical image analysis.
+This project implements a deep learning–based image classification system to detect brain tumors from MRI images. A Convolutional Neural Network (CNN) is trained to classify MRI scans into four categories: Glioma, Meningioma, Pituitary Tumor, and No Tumor, helping demonstrate the application of deep learning in medical image analysis.
 
 ## Objective
 The objective of this project is to build and evaluate a CNN model that can automatically identify the presence of brain tumors from MRI images, which can assist in early diagnosis and medical decision support.
 
+## Technologies Used
+
+- Python
+- TensorFlow / Keras
+- NumPy
+- Pandas
+- Matplotlib
+- Seaborn
+- Scikit-learn
+- Jupyter Notebook
+
 ## Dataset
-The dataset consists of brain MRI images organized into training and validation directories. Each image belongs to one of the following classes:
-- Tumor
+
+The dataset consists of brain MRI images organized into training and testing directories. Each image belongs to one of the following classes:
+
+- Glioma Tumor
+- Meningioma Tumor
+- Pituitary Tumor
 - No Tumor
 
 The dataset is structured as:
 ```
 data/
+│
 ├── train/
-│ ├── Tumor/
-│ └── No_Tumor/
-└── val/
-├── Tumor/
-└── No_Tumor/
+│   ├── glioma/
+│   ├── meningioma/
+│   ├── no_tumor/
+│   └── pituitary/
+│
+├── val/
+│   ├── glioma/
+│   ├── meningioma/
+│   ├── no_tumor/
+│   └── pituitary/
+│
+└── test/
+    ├── glioma/
+    ├── meningioma/
+    ├── no_tumor/
+    └── pituitary/
 ```
+
+The dataset contains approximately 7,000 MRI images and is used for multi-class brain tumor classification.
 
 > **Note:** The dataset is not included in this repository due to size limitations.  
 > Please place the dataset inside the `data/` directory before running the notebook.
@@ -46,11 +75,15 @@ Brain-Tumor-MRI-Classification/
 - Performance evaluation using confusion matrix and classification report  
 
 ## Model Architecture
-The CNN architecture includes:
-- Convolutional layers with ReLU activation
-- MaxPooling layers for dimensionality reduction
-- Fully connected (Dense) layers
-- Softmax activation for classification
+
+The CNN model consists of:
+
+- Convolutional Layers (feature extraction)
+- ReLU Activation Functions
+- Max Pooling Layers
+- Flatten Layer
+- Fully Connected Dense Layers
+- Softmax Output Layer (4 classes)
 
 ## Evaluation Metrics
 The model performance is evaluated using:
@@ -61,13 +94,25 @@ The model performance is evaluated using:
 - Confusion Matrix
 
 ## Results
-- The trained CNN model achieves good classification performance on the validation dataset.
+
+The CNN model achieved the following performance on the test dataset:
+
+- Accuracy: 96%
+- Macro F1-Score: 0.96
+- Weighted F1-Score: 0.96
+
+### Class-wise Performance
+
+| Class | Precision | Recall | F1-Score |
+|---------|---------|---------|---------|
+| Glioma | 0.92 | 0.96 | 0.94 |
+| Meningioma | 0.97 | 0.87 | 0.91 |
+| No Tumor | 0.97 | 1.00 | 0.99 |
+| Pituitary | 0.98 | 1.00 | 0.99 |
+
 - The confusion matrix visualization is available below:
 
 ![Confusion Matrix](results/confusion_matrix.png)
-
-- A detailed classification report (precision, recall, F1-score) is available in:
-`results/classification_report.txt`
 
 
 ## How to Run the Project
@@ -84,9 +129,11 @@ The model performance is evaluated using:
 - Limited generalization to unseen MRI datasets  
 
 ## Future Improvements
-- Apply data augmentation to improve generalization  
+- Experiment with transfer learning models such as ResNet50, EfficientNet, and MobileNet
+- Hyperparameter tuning for improved accuracy
+- Deploy as a web application using Flask or Streamlit
+- Integrate explainable AI techniques such as Grad-CAM 
 - Use transfer learning models such as ResNet or MobileNet  
-- Deploy the model as a web or desktop application  
 
 ## Author
 Sanskriti Singh
